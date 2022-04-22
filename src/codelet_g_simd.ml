@@ -24,10 +24,8 @@ open Genutil
 open C
 
 let template_prev_str =
-  "#ifdef __cplusplus" ^ "\n"
-  ^ "#include \"gfft/operator/codelets/simd/codelets.h\"" ^ "\n\n"
-  ^ "namespace gfft {" ^ "\n\n" ^ "namespace op {" ^ "\n\n"
-  ^ "template <typename R>" ^ "\n\n" ^ "#endif" ^ "\n"
+  "#ifdef __cplusplus" ^ "\n\n" ^ "namespace gfft {" ^ "\n\n" ^ "namespace op {"
+  ^ "\n\n" ^ "template <typename R>" ^ "\n\n" ^ "#endif" ^ "\n"
 
 let template_after_str =
   "#ifdef __cplusplus" ^ "\n" ^ "}  // namespace op" ^ "\n\n"
