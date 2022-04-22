@@ -46,33 +46,31 @@ CODELET_G2V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
 CODELET_G3V = 2 4 8 16 32 64
 CODELET_G3V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8 -twiddle-log3 -precompute-twiddles -no-generate-bytw
 
-# CODELETS = 	$(addsuffix .h,\
-# 			$(addprefix $(INSTALL_DIR)/reference/n1/n1_, $(CODELET_N1)) 	\
-# 			$(addprefix $(INSTALL_DIR)/reference/t1/t1_, $(CODELET_T1)) 	\
-# 			$(addprefix $(INSTALL_DIR)/reference/t2/t2_, $(CODELET_T2)) 	\
-# 			$(addprefix $(INSTALL_DIR)/reference/g1/g1_, $(CODELET_G1)) 	\
-# 			$(addprefix $(INSTALL_DIR)/reference/g2/g2_, $(CODELET_G2)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/n1/n1fv_, 	 $(CODELET_N1V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/n1/n1bv_, 	 $(CODELET_N1V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/n2/n2fv_, 	 $(CODELET_N2V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/n2/n2bv_, 	 $(CODELET_N2V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/n3/n3fv_, 	 $(CODELET_N3V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/n3/n3bv_, 	 $(CODELET_N3V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/t1/t1fv_, 	 $(CODELET_T1V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/t1/t1bv_, 	 $(CODELET_T1V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/t2/t2fv_, 	 $(CODELET_T2V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/t2/t2bv_, 	 $(CODELET_T2V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/t3/t3fv_, 	 $(CODELET_T3V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/t3/t3bv_, 	 $(CODELET_T3V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/g1/g1fv_, 	 $(CODELET_G1V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/g1/g1bv_, 	 $(CODELET_G1V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/g2/g2fv_, 	 $(CODELET_G2V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/g2/g2bv_, 	 $(CODELET_G2V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/g3/g3fv_, 	 $(CODELET_G3V)) 	\
-# 			$(addprefix $(INSTALL_DIR)/simd/g3/g3bv_, 	 $(CODELET_G3V))	\
-# 			)
-
-CODELETS = $(INSTALL_DIR)/reference/n1/n1_2.h
+CODELETS = 	$(addsuffix .h,\
+			$(addprefix $(INSTALL_DIR)/reference/n1/n1_, $(CODELET_N1)) 	\
+			$(addprefix $(INSTALL_DIR)/reference/t1/t1_, $(CODELET_T1)) 	\
+			$(addprefix $(INSTALL_DIR)/reference/t2/t2_, $(CODELET_T2)) 	\
+			$(addprefix $(INSTALL_DIR)/reference/g1/g1_, $(CODELET_G1)) 	\
+			$(addprefix $(INSTALL_DIR)/reference/g2/g2_, $(CODELET_G2)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/n1/n1fv_, 	 $(CODELET_N1V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/n1/n1bv_, 	 $(CODELET_N1V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/n2/n2fv_, 	 $(CODELET_N2V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/n2/n2bv_, 	 $(CODELET_N2V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/n3/n3fv_, 	 $(CODELET_N3V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/n3/n3bv_, 	 $(CODELET_N3V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/t1/t1fv_, 	 $(CODELET_T1V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/t1/t1bv_, 	 $(CODELET_T1V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/t2/t2fv_, 	 $(CODELET_T2V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/t2/t2bv_, 	 $(CODELET_T2V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/t3/t3fv_, 	 $(CODELET_T3V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/t3/t3bv_, 	 $(CODELET_T3V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/g1/g1fv_, 	 $(CODELET_G1V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/g1/g1bv_, 	 $(CODELET_G1V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/g2/g2fv_, 	 $(CODELET_G2V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/g2/g2bv_, 	 $(CODELET_G2V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/g3/g3fv_, 	 $(CODELET_G3V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/g3/g3bv_, 	 $(CODELET_G3V))	\
+			)
 
 GENFFT_NATIVE = $(GEN_N) $(GEN_NV) \
 				$(GEN_T) $(GEN_TV) \
