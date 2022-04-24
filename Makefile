@@ -16,37 +16,40 @@ GEN_NV = codelet_n_simd.native
 GEN_TV = codelet_t_simd.native
 GEN_GV = codelet_g_simd.native
 
+GEN_PLATFORM_FLAGS = -compact -variables 4 -pipeline-latency 4
+GEN_PLATFORM_SIMD_FLAGS = -simd -compact -variables 4 -pipeline-latency 8
+
 CODELET_N1 = 2 4 8 16 32 64
-CODELET_N1_FLAGS=-compact -variables 4 -pipeline-latency 4
+CODELET_N1_FLAGS = $(GEN_PLATFORM_FLAGS)
 CODELET_T1 = 2 4 8 16 32 64
-CODELET_T1_FLAGS=-compact -variables 4 -pipeline-latency 4
+CODELET_T1_FLAGS = $(GEN_PLATFORM_FLAGS)
 CODELET_T2 = 2 4 8 16 32 64
-CODELET_T2_FLAGS=-compact -variables 4 -pipeline-latency 4 -twiddle-log3 -precompute-twiddles
+CODELET_T2_FLAGS = $(GEN_PLATFORM_FLAGS) -twiddle-log3 -precompute-twiddles
 CODELET_G1 = 2 4 8 16 32 64
-CODELET_G1_FLAGS=-compact -variables 4 -pipeline-latency 4
+CODELET_G1_FLAGS = $(GEN_PLATFORM_FLAGS)
 CODELET_G2 = 2 4 8 16 32 64
-CODELET_G2_FLAGS=-compact -variables 4 -pipeline-latency 4 -twiddle-log3 -precompute-twiddles
+CODELET_G2_FLAGS = $(GEN_PLATFORM_FLAGS) -twiddle-log3 -precompute-twiddles
 
 CODELET_N1V = 2 4 8 16 32 64
-CODELET_N1V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
+CODELET_N1V_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS)
 CODELET_N2V = 2 4 8 16 32 64
-CODELET_N2V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8 -with-ostride 2 -store-multiple 2
+CODELET_N2V_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS) -with-ostride 2 -store-multiple 2
 CODELET_N3V = 2 4 8 16 32 64
-CODELET_N3V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8 -with-ostride 2 -store-multiple 2
+CODELET_N3V_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS) -with-ostride 2 -store-multiple 2
 CODELET_T1V = 2 4 8 16 32 64
-CODELET_T1V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
+CODELET_T1V_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS)
 CODELET_T1UV = 2 4 8
-CODELET_T1UV_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
+CODELET_T1UV_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS)
 CODELET_T2V = 2 4 8 16 32 64
-CODELET_T2V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
+CODELET_T2V_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS)
 CODELET_T3V = 2 4 8 16 32 64
-CODELET_T3V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8 -twiddle-log3 -precompute-twiddles -no-generate-bytw
+CODELET_T3V_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS) -twiddle-log3 -precompute-twiddles -no-generate-bytw
 CODELET_G1V = 2 4 8 16 32 64
-CODELET_G1V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
+CODELET_G1V_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS)
 CODELET_G2V = 2 4 8 16 32 64
-CODELET_G2V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
+CODELET_G2V_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS)
 CODELET_G3V = 2 4 8 16 32 64
-CODELET_G3V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8 -twiddle-log3 -precompute-twiddles -no-generate-bytw
+CODELET_G3V_FLAGS = $(GEN_PLATFORM_SIMD_FLAGS) -twiddle-log3 -precompute-twiddles -no-generate-bytw
 
 CODELETS = 	$(addsuffix .h,\
 			$(addprefix $(INSTALL_DIR)/reference/n1/n1_, $(CODELET_N1)) 	\
