@@ -144,7 +144,7 @@ let generate n =
 
   let tree =
     Fcn
-      ( (if !Magic.standalone then "void" else "static void"),
+      ( template_prev_str ^ "STATIC GFFT_ALWAYS_INLINE " ^ "void",
         ename,
         [
           Decl (C.constrealtypep, riarray);

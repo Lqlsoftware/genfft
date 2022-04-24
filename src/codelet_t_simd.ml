@@ -132,7 +132,7 @@ let generate n =
 
   let tree =
     Fcn
-      ( (if !Magic.standalone then "" else "static ") ^ "void",
+      ( template_prev_str ^ "STATIC GFFT_ALWAYS_INLINE " ^ "void",
         ename,
         [
           Decl (C.realtypep, "ri");

@@ -200,7 +200,7 @@ let speclist =
 let check_size () =
   match !size with Some i -> i | None -> failwith "must specify -n"
 
-let expand_name name = if name = "" then "noname" else name
+let expand_name name = if name = "" then "X(noname)" else "X(" ^ name ^ ")"
 
 let declare_register_fcn name =
   if name = "" then "void NAME(planner *p)\n"
