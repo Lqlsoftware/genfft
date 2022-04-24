@@ -1,8 +1,8 @@
 # Require: ocaml -version == 4.10.0
 OCAMLBUILD := ocamlbuild
 
-INSTALL_DIR := codelets
-CURRENT_DIR := $(shell pwd)
+INSTALL_DIR := ../../gfft/operator/codelets
+CURRENT_DIR := .
 
 PRELUDE = cat PRELUDE; echo ""
 ADD_DATE = sed -e s/@DATE@/"`date`"/
@@ -21,20 +21,22 @@ CODELET_N1_FLAGS=-compact -variables 4 -pipeline-latency 4
 CODELET_T1 = 2 4 8 16 32 64
 CODELET_T1_FLAGS=-compact -variables 4 -pipeline-latency 4
 CODELET_T2 = 2 4 8 16 32 64
-CODELET_T2_FLAGS=-compact -variables 4 -pipeline-latency 4
+CODELET_T2_FLAGS=-compact -variables 4 -pipeline-latency 4 -twiddle-log3 -precompute-twiddles
 CODELET_G1 = 2 4 8 16 32 64
 CODELET_G1_FLAGS=-compact -variables 4 -pipeline-latency 4
 CODELET_G2 = 2 4 8 16 32 64
-CODELET_G2_FLAGS=-compact -variables 4 -pipeline-latency 4
+CODELET_G2_FLAGS=-compact -variables 4 -pipeline-latency 4 -twiddle-log3 -precompute-twiddles
 
 CODELET_N1V = 2 4 8 16 32 64
 CODELET_N1V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
 CODELET_N2V = 2 4 8 16 32 64
-CODELET_N2V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8 -with-ostride 2
+CODELET_N2V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8 -with-ostride 2 -store-multiple 2
 CODELET_N3V = 2 4 8 16 32 64
-CODELET_N3V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8 -with-ostride 2
+CODELET_N3V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8 -with-ostride 2 -store-multiple 2
 CODELET_T1V = 2 4 8 16 32 64
 CODELET_T1V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
+CODELET_T1UV = 2 4 8
+CODELET_T1UV_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
 CODELET_T2V = 2 4 8 16 32 64
 CODELET_T2V_FLAGS=-simd -compact -variables 4 -pipeline-latency 8
 CODELET_T3V = 2 4 8 16 32 64
@@ -60,6 +62,8 @@ CODELETS = 	$(addsuffix .h,\
 			$(addprefix $(INSTALL_DIR)/simd/n3/n3bv_, 	 $(CODELET_N3V)) 	\
 			$(addprefix $(INSTALL_DIR)/simd/t1/t1fv_, 	 $(CODELET_T1V)) 	\
 			$(addprefix $(INSTALL_DIR)/simd/t1/t1bv_, 	 $(CODELET_T1V)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/t1/t1fuv_, 	 $(CODELET_T1UV)) 	\
+			$(addprefix $(INSTALL_DIR)/simd/t1/t1buv_, 	 $(CODELET_T1UV)) 	\
 			$(addprefix $(INSTALL_DIR)/simd/t2/t2fv_, 	 $(CODELET_T2V)) 	\
 			$(addprefix $(INSTALL_DIR)/simd/t2/t2bv_, 	 $(CODELET_T2V)) 	\
 			$(addprefix $(INSTALL_DIR)/simd/t3/t3fv_, 	 $(CODELET_T3V)) 	\
@@ -112,6 +116,10 @@ $(INSTALL_DIR)/simd/t1/t1fv_%.h:
 	$(MKDIR) $(@D) && ($(PRELUDE); $(CURRENT_DIR)/$(GEN_TV) $(CODELET_T1V_FLAGS) -n $* -name t1fv_$*) | $(ADD_DATE) | $(FORMAT) > $@
 $(INSTALL_DIR)/simd/t1/t1bv_%.h:
 	$(MKDIR) $(@D) && ($(PRELUDE); $(CURRENT_DIR)/$(GEN_TV) $(CODELET_T1V_FLAGS) -sign 1 -n $* -name t1bv_$*) | $(ADD_DATE) | $(FORMAT) > $@
+$(INSTALL_DIR)/simd/t1/t1fuv_%.h:
+	$(MKDIR) $(@D) && ($(PRELUDE); $(CURRENT_DIR)/$(GEN_TV) $(CODELET_T1UV_FLAGS) -n $* -name t1fuv_$*) | $(ADD_DATE) | $(FORMAT) > $@
+$(INSTALL_DIR)/simd/t1/t1buv_%.h:
+	$(MKDIR) $(@D) && ($(PRELUDE); $(CURRENT_DIR)/$(GEN_TV) $(CODELET_T1UV_FLAGS) -sign 1 -n $* -name t1buv_$*) | $(ADD_DATE) | $(FORMAT) > $@
 $(INSTALL_DIR)/simd/t2/t2fv_%.h:
 	$(MKDIR) $(@D) && ($(PRELUDE); $(CURRENT_DIR)/$(GEN_TV) $(CODELET_T2V_FLAGS) -n $* -name t2fv_$*) | $(ADD_DATE) | $(FORMAT) > $@
 $(INSTALL_DIR)/simd/t2/t2bv_%.h:
